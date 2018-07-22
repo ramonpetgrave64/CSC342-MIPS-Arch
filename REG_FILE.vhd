@@ -13,31 +13,41 @@ end Reg_File;
 
 architecture Behavioral of Reg_File is
 	--initializing register file 
-    type reg_file_type is array(0 to 7) of STD_LOGIC_VECTOR (31 downto 0);
+    type reg_file_type is array(0 to 31) of STD_LOGIC_VECTOR (31 downto 0);
     signal array_reg: reg_file_type := (
 											x"00000000", --$zero
-											x"02020202", --$v0
-											x"04040404", --$a0
-											x"08080808", --$t0
-											x"09090909", --$t1
-											x"0A0A0A0A", --$t2
-											x"0B0B0B0B", --$t3
-											x"0C0C0C0C", --$t4
-											x"0D0D0D0D", --$t5
-											x"0E0E0E0E", --$t6
-											x"0F0F0F0F", --$t7
-											x"10101010", --$s0
-											x"11111111", --$s1
-											x"12121212", --$s2
-											x"13131313", --$s3
-											x"14141414", --$s4
-											x"15151515", --$s5
-											x"16161616", --$s6
-											x"17171717", --$s7
-											x"18181818", --$t8
-											x"19191919", --$t9
-											others => x"00000000" --others
-													);
+											x"02020202", --$at
+											x"04040404", --$v0
+											x"08080808", --$v1
+											x"09090909", --$a0
+											x"0A0A0A0A", --$a1
+											x"0B0B0B0B", --$a2
+											x"0C0C0C0C", --$a3
+											x"0D0D0D0D", --$t0
+											x"0E0E0E0E", --$t1
+											x"0F0F0F0F", --$t2
+											x"10101010", --$t3
+											x"11111111", --$t4
+											x"12121212", --$t5
+											x"13131313", --$t6
+											x"14141414", --$t7
+											x"15151515", --$s0
+											x"16161616", --$s1
+											x"17171717", --$s2
+											x"18181818", --$s3
+											x"19191919", --$s4
+											x"AAAAAAAA", --$s5
+											x"BBBBBBBB", --$s6
+											x"CCCCCCCC", --$s7
+											x"DDDDDDDD", --$t8
+											x"EEEEEEEE", --$t9
+											x"FFFFFFFF", --$k0
+											x"11221122", --$k1
+											x"22332233", --$gp
+											x"33443344", --$sp
+											x"44554455", --$fp
+											x"55665566" --$ra											
+										);
 
 begin
 	
