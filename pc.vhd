@@ -13,14 +13,14 @@ port(
 	load: in std_logic; -- needed for implementation of branch instructions
 	reset: in std_logic; -- asynchronous reset of the PC
 	input_address: in std_logic_vector(31 downto 0); -- needed for implementation of branch instructions
-	output_address: buffer std_logic_vector(31 downto 0) -- 32 bit address
+	output_address: out std_logic_vector(31 downto 0) -- 32 bit address
 );
 
 end pc;
 
 architecture pc_arch of pc is
-
-signal temp_output: std_logic_vector(31 downto 0);
+																		-- initial value 00000000010000000000000000000000
+signal temp_output: std_logic_vector(31 downto 0) := x"00000000";
 
 begin
 

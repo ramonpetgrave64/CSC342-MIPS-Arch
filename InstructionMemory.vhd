@@ -33,7 +33,8 @@ architecture Behavioral of InstructionMemory is
 begin
 		--Note: 4194303 = 0x0040 0000
 		Instruction <= x"00000000" when ReadAddress = x"003FFFFC" else
-		IM((to_integer(unsigned(ReadAddress))-4194304)/4);
+		IM((to_integer(unsigned(ReadAddress))-0)/4);
+		--offset 4194304
 				  
 				  
 end Behavioral;

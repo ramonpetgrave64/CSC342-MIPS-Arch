@@ -41,51 +41,49 @@ ARCHITECTURE behavior OF Test_InstructionMemory IS
  
     COMPONENT InstructionMemory
     PORT(
-         ReadAddress : IN  std_logic_vector(31 downto 0);
+         ReadAddress : IN  std_logic_vector(31 downto 0) := (others => '0');
          Instruction : OUT  std_logic_vector(31 downto 0)
         );
     END COMPONENT;
     
 
    --Inputs
-   signal ReadAddress : std_logic_vector(31 downto 0) := (others => '0');
+   signal tb_ReadAddress : std_logic_vector(31 downto 0) := (others => '0');
 
  	--Outputs
-   signal Instruction : std_logic_vector(31 downto 0);
-   -- No clocks detected in port list. Replace <clock> below with 
-   -- appropriate port name 
- 
-   constant <clock>_period : time := 10 ns;
+   signal tb_Instruction : std_logic_vector(31 downto 0);
  
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
    uut: InstructionMemory PORT MAP (
-          ReadAddress => ReadAddress,
-          Instruction => Instruction
+          ReadAddress => tb_ReadAddress,
+          Instruction => tb_Instruction
         );
 
-   -- Clock process definitions
-   <clock>_process :process
-   begin
-		<clock> <= '0';
-		wait for <clock>_period/2;
-		<clock> <= '1';
-		wait for <clock>_period/2;
-   end process;
- 
 
    -- Stimulus process
-   stim_proc: process
+   process
    begin		
       -- hold reset state for 100 ns.
-      wait for 100 ns;	
-
-      wait for <clock>_period*10;
+      
+		tb_ReadAddress <= "00000000000000000000000000000000";
+--		tb_ReadAddress <= x"‭00400000‬";
+      wait for 10ns;
+		tb_ReadAddress <= "00000000000000000000000000000100";
+--		tb_ReadAddress <= x"00400004";
+      wait for 10ns;
+		tb_ReadAddress <= "00000000000000000000000000001100";
+--		tb_ReadAddress <= x"00400008";
+      wait for 10ns;
+		tb_ReadAddress <= "00000000000000000000000000010000";
+--		tb_ReadAddress <= x"0040000C";
+      wait for 10ns;
 
       -- insert stimulus here 
 
-      wait;
+--      wait;
+	Assert false report "over" severity failure;
    end process;
 
 END;

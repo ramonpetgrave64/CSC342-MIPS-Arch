@@ -69,6 +69,11 @@ BEGIN
 		  tbALUop <= "10";
 		  tbfunct <= "101010";
 		  WAIT FOR 10 ns;
+		  
+		  --I type BEQ
+		  tbALUop <= "11";
+		  tbfunct <= "000000";
+		  WAIT FOR 10 ns;
 		    
   ASSERT FALSE REPORT "Test over" SEVERITY FAILURE;
 		

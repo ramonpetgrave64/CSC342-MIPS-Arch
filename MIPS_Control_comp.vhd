@@ -35,7 +35,7 @@ begin
 					regfile_data_in_src <= '1';
 					regfile_write <= '1';
 					alu_src <= '0';
-					alu_op <= "XX";
+					alu_op <= "10";
 					mem_read <= '0';
 					mem_write <= '0';
 				when "100011" => -- I-Type instruction, Load Word
@@ -43,7 +43,7 @@ begin
 					regfile_data_in_src <= '0';
 					regfile_write <= '1';
 					alu_src <= '1';
-					alu_op <= "XX";
+					alu_op <= "00";
 					mem_read <= '1';
 					mem_write <= '0';
 				when "101011" => -- I-Type instruction, Store Word
@@ -51,15 +51,23 @@ begin
 					regfile_data_in_src <= 'X';
 					regfile_write <= '0';
 					alu_src <= '1';
-					alu_op <= "XX";
+					alu_op <= "00";
 					mem_read <= '0';
 					mem_write <= '1';
+				when "000100" => -- I-type instruction, beq
+					regfile_write_addr_src <= 'X';
+					regfile_data_in_src <= 'X';
+					regfile_write <= '0';
+					alu_src <= '1';
+					alu_op <= "X1";
+					mem_read <= '0';
+					mem_write <= '0';
 				when others => 
 					regfile_write_addr_src <= '0';
 					regfile_data_in_src <= '0';
 					regfile_write <= '0';
 					alu_src <= '0';
-					alu_op <= "00";
+					alu_op <= "XX";
 					mem_read <= '0';
 					mem_write <= '0';
 			end case;
