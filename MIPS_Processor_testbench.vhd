@@ -55,7 +55,7 @@ BEGIN
    stim_proc: process
    begin		
       -- hold reset state for 100 ns.
-      wait for 10 ns;	
+      wait for 100 ns;	
 --		test_in <= x"00000000";
 --      wait for clk_period*10;
       -- insert stimulus here 

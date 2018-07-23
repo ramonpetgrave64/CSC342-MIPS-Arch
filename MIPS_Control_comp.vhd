@@ -26,9 +26,10 @@ architecture Behavioral of MIPS_Control_comp is
 
 begin
 
-	control_proc: process (clk)
+--	control_proc: process (clk)
+	control_proc: process (opcode)
 	begin
-		if rising_edge(clk) then
+--		if rising_edge(clk) then
 			case opcode is 
 				when "000000" => -- R-Type instruction
 					regfile_write_addr_src <= '1';
@@ -59,7 +60,15 @@ begin
 					regfile_data_in_src <= 'X';
 					regfile_write <= '0';
 					alu_src <= '1';
-					alu_op <= "X1";
+					alu_op <= "01";
+					mem_read <= '0';
+					mem_write <= '0';
+				when "100000" => -- J-type instruction, Jump
+					regfile_write_addr_src <= 'X';
+					regfile_data_in_src <= 'X';
+					regfile_write <= '0';
+					alu_src <= '1';
+					alu_op <= "XX";
 					mem_read <= '0';
 					mem_write <= '0';
 				when others => 
@@ -71,7 +80,7 @@ begin
 					mem_read <= '0';
 					mem_write <= '0';
 			end case;
-		end if;
+--		end if;
 	end process;
 
 
