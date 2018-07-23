@@ -12,13 +12,13 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity ALU is
     Port ( alu_en : in  STD_LOGIC;
-           alu_ctl : in  STD_LOGIC_VECTOR (3 downto 0);
+           alu_ctl : in  STD_LOGIC_VECTOR (2 downto 0);
            alu_a, alu_b : in  STD_LOGIC_VECTOR (31 downto 0);           
            alu_out : out  STD_LOGIC_VECTOR (31 downto 0);
            alu_zero : out  STD_LOGIC);
 end ALU;
 
-architecture Behavioral of ALU is
+`architecture Behavioral of ALU is
 
 --creating a 32-bit variable to hold the computation result
 signal result : STD_LOGIC_VECTOR(31 downto 0);
@@ -29,11 +29,11 @@ process(alu_en,alu_ctl,alu_a,alu_b)
 	begin
 		if alu_en = '1' then
 			--addition
-			if alu_ctl = "0010" then
+			if alu_ctl = "010" then
 				result <= STD_LOGIC_VECTOR(unsigned(alu_a) + unsigned(alu_b));
 			end if;
 			--subtraction
-			if alu_ctl = "0110" then
+			if alu_ctl = "110" then
 				result <= STD_LOGIC_VECTOR(unsigned(alu_a) - unsigned(alu_b));
 			end if;
 			-- alu_zero output
