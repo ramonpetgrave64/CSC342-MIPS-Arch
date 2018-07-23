@@ -18,33 +18,32 @@ entity ALU is
            alu_zero : out  STD_LOGIC);
 end ALU;
 
-`architecture Behavioral of ALU is
+architecture Behavioral of ALU is
 
 --creating a 32-bit variable to hold the computation result
-signal result : STD_LOGIC_VECTOR(31 downto 0);
+signal result : INTEGER := 0;
 
 begin
 --this part executes only if the ALU signal is enabled
-process(alu_en,alu_ctl,alu_a,alu_b)
+process(alu_en)
 	begin
 		if alu_en = '1' then
 			--addition
 			if alu_ctl = "010" then
-				result <= STD_LOGIC_VECTOR(unsigned(alu_a) + unsigned(alu_b));
-			end if;
+				result <= to_integer(unsigned(alu_a) + unsigned(alu_b));
 			--subtraction
-			if alu_ctl = "110" then
-				result <= STD_LOGIC_VECTOR(unsigned(alu_a) - unsigned(alu_b));
-			end if;
-			-- alu_zero output
-			if result = "0" then
-				alu_zero <= '1';
-			else 
-				alu_zero <= '0';
-			end if;
+			elsif alu_ctl = "110" then
+				result <= to_integer(unsigned(alu_a) - unsigned(alu_b));
+			else
+				result <= 0;
+			end if;								
 		end if;
 	end process;
-	--writing the value in result variable to alu_out variable
-	alu_out <= result;
+	
+	--writing result value to alu_out
+	alu_out <= STD_LOGIC_VECTOR(to_unsigned(result,32));
+	
+	-- alu_zero output
+	alu_zero <= '1' when result = 0 else '0';	
 	
 end Behavioral;
