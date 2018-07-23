@@ -25,7 +25,7 @@ signal result : STD_LOGIC_VECTOR(31 downto 0);
 
 begin
 --this part executes only if the ALU signal is enabled
-process(alu_en)
+process(alu_en,alu_ctl,alu_a,alu_b)
 	begin
 		if alu_en = '1' then
 			--addition
@@ -44,5 +44,7 @@ process(alu_en)
 			end if;
 		end if;
 	end process;
+	--writing the value in result variable to alu_out variable
+	alu_out <= result;
 	
 end Behavioral;
