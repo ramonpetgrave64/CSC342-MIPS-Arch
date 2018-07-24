@@ -12,7 +12,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity ADD2 is
     Port ( add_a : in  STD_LOGIC_VECTOR (31 downto 0);
-           add_B : in  STD_LOGIC_VECTOR (31 downto 0);
+           add_b : in  STD_LOGIC_VECTOR (31 downto 0);
            add_out : out  STD_LOGIC_VECTOR (31 downto 0));
 end ADD2;
 
