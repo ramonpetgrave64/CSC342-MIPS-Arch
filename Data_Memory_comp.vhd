@@ -35,7 +35,7 @@ architecture Behavioral of Data_Memory_comp is
 										 
 begin
 
-	process(write_en, read_en, read_addr, write_addr)
+	process(write_en, read_en, read_addr, write_addr, data_write)
 		begin
 			if(write_en = '1') then --offset was 26840092
 				mem( (to_integer(unsigned(write_addr))-26840092) / 4 ) <= data_write;
