@@ -38,10 +38,10 @@ begin
 	process(write_en, read_en, read_addr, write_addr)
 		begin
 			if(write_en = '1') then --offset was 26840092
-				mem( (to_integer(unsigned(write_addr))-0) / 4 ) <= data_write;
+				mem( (to_integer(unsigned(write_addr))-26840092) / 4 ) <= data_write;
 			end if;
 			if(read_en = '1') then
-				data_read <= mem( (to_integer(unsigned(read_addr))-0) / 4 );
+				data_read <= mem( (to_integer(unsigned(read_addr))-26840092) / 4 );
 			end if;
 	end process;
 			

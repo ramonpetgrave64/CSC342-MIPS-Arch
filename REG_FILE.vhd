@@ -56,7 +56,7 @@ begin
    	data_two <= array_reg(to_integer(unsigned(read_reg_two)));
 	
 	--instructions with reg_write enabled
-	process(reg_write)
+	process(reg_write, dest_reg, write_data)
 	begin
 		if reg_write = '1' then
             --put write_data into destination register

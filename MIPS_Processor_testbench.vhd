@@ -30,7 +30,7 @@ ARCHITECTURE behavior OF MIPS_Processor_testbench IS
    signal test_out : std_logic_vector(2 downto 0);
 
    -- Clock period definitions
-   constant clk_period : time := 10 ns;
+   constant clk_period : time := 100 ns;
  
 BEGIN
  
