@@ -11,7 +11,10 @@ architecture Behavioral of InstructionMemory is
 
 	type RAM_16_x_32 is array(0 to 15) of std_logic_vector(31 downto 0);
 	
-	signal IM : RAM_16_x_32 := ( x"01285024", -- 0x0040 0000: and $t2, $t1, $t0
+	signal IM : RAM_16_x_32 := ( X"01095022",
+										  x"01095020",
+										  x"018d5820",
+										  x"01285024", -- 0x0040 0000: and $t2, $t1, $t0
 										  x"018b6825", -- 0x0040 0004: or  $t5, $t4, $t3
 										  x"01285020", -- 0x0040 0008: add $t2, $t1, $t0
 										  x"01285022", -- 0x0040 000C: sub $t2, $t1, $t0
@@ -23,9 +26,6 @@ architecture Behavioral of InstructionMemory is
 										  x"01285022", -- 0x0040 0024: sub $t2, $t1, $t0
 										  x"0149402a", -- 0x0040 0028: slt $t0, $t2, $t1
 										  x"08100000", -- 0x0040 002C: j   0x00400000 => 0000 1000
-										  x"00000000", 
-										  x"00000000", 
-										  x"00000000", 
 										  x"00000000"
 										  );
 										  						

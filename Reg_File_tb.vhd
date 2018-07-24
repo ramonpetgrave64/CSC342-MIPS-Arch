@@ -52,34 +52,34 @@ BEGIN
    stim_proc: process
    begin		      
 	--reading all 32 registers
---		for I in 0 to 30 loop
---			read_reg_one <= std_logic_vector(to_unsigned(I,5));
---			read_reg_two <= std_logic_vector(to_unsigned(I+1,5));
---			wait for 20 ns;
---		end loop;
+		for I in 0 to 30 loop
+			read_reg_one <= std_logic_vector(to_unsigned(I,5));
+			read_reg_two <= std_logic_vector(to_unsigned(I+1,5));
+			wait for 20 ns;
+		end loop;
 		
 		
 		--writing to a register
 
-		reg_write <= '0';
-		wait for 5 ns;
-		reg_write <= '1';
-		--overwriting register $t2
-		dest_reg <= "01010";
-		write_data <= x"AAAAAAAA";
-		wait for 5 ns;		
-		reg_write <= '0';
-		dest_reg <= "00000";
-		write_data <= x"00000000";
-		
-		reg_write <= '1';
-		--overwriting register $v0		
-		dest_reg <= "00010";
-		write_data <= x"08080808";
-		wait for 5 ns;
-		reg_write <= '0';
-		dest_reg <= "00000";
-		write_data <= x"00000000";
+--		reg_write <= '0';
+--		wait for 5 ns;
+--		reg_write <= '1';
+--		--overwriting register $t2
+--		dest_reg <= "01010";
+--		write_data <= x"AAAAAAAA";
+--		wait for 5 ns;		
+--		reg_write <= '0';
+--		dest_reg <= "00000";
+--		write_data <= x"00000000";
+--		
+--		reg_write <= '1';
+--		--overwriting register $v0		
+--		dest_reg <= "00010";
+--		write_data <= x"08080808";
+--		wait for 5 ns;
+--		reg_write <= '0';
+--		dest_reg <= "00000";
+--		write_data <= x"00000000";
 		
 		wait;		
    end process;

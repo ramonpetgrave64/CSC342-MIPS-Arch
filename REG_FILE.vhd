@@ -7,7 +7,7 @@ entity Reg_File is
 				reg_write: in STD_LOGIC;
 				read_reg_one, read_reg_two, dest_reg: in STD_LOGIC_VECTOR(4 downto 0);
 				write_data: in STD_LOGIC_VECTOR(31 downto 0);
-				data_one, data_two: out STD_LOGIC_VECTOR(31 downto 0)
+				data_one, data_two: out STD_LOGIC_VECTOR(31 downto 0) := x"00000000"
 			);
 end Reg_File;
 
@@ -23,7 +23,7 @@ architecture Behavioral of Reg_File is
 											x"0A0A0A0A", --$a1
 											x"0B0B0B0B", --$a2
 											x"0C0C0C0C", --$a3
-											x"0D0D0D0D", --$t0
+											x"12345670", --$t0
 											x"0E0E0E0E", --$t1
 											x"0F0F0F0F", --$t2
 											x"10101010", --$t3

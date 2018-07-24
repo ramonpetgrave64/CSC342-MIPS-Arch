@@ -15,6 +15,7 @@ entity MIPS_Control_comp is
            clk : in  STD_LOGIC; -- clocck signal
 			  regfile_write_addr_src : out STD_LOGIC; -- 0: I-type(20:16), 1: R-type(15:11)
 			  regfile_data_in_src : out STD_LOGIC; -- 0: memory_data, 1: ALU_data
+			  pc_src : out STD_LOGIC; -- 0: pc, 1: adder
 			  regfile_write: out STD_LOGIC; -- -- enable register-file-write
 			  alu_src : out STD_LOGIC; -- 0: register file, 1: sign extender
 			  alu_op :out STD_LOGIC_VECTOR (1 downto 0);
@@ -39,6 +40,7 @@ begin
 					alu_op <= "10";
 					mem_read <= '0';
 					mem_write <= '0';
+					pc_src <= '0';
 				when "100011" => -- I-Type instruction, Load Word
 					regfile_write_addr_src <= '0';
 					regfile_data_in_src <= '0';
@@ -47,6 +49,7 @@ begin
 					alu_op <= "00";
 					mem_read <= '1';
 					mem_write <= '0';
+					pc_src <= '0';
 				when "101011" => -- I-Type instruction, Store Word
 					regfile_write_addr_src <= 'X';
 					regfile_data_in_src <= 'X';
@@ -55,6 +58,7 @@ begin
 					alu_op <= "00";
 					mem_read <= '0';
 					mem_write <= '1';
+					pc_src <= '0';
 				when "000100" => -- I-type instruction, beq
 					regfile_write_addr_src <= 'X';
 					regfile_data_in_src <= 'X';
@@ -63,6 +67,7 @@ begin
 					alu_op <= "01";
 					mem_read <= '0';
 					mem_write <= '0';
+					pc_src <= '1';
 				when "100000" => -- J-type instruction, Jump
 					regfile_write_addr_src <= 'X';
 					regfile_data_in_src <= 'X';
@@ -71,6 +76,7 @@ begin
 					alu_op <= "XX";
 					mem_read <= '0';
 					mem_write <= '0';
+					pc_src <= '1';
 				when others => 
 					regfile_write_addr_src <= '0';
 					regfile_data_in_src <= '0';
@@ -79,6 +85,7 @@ begin
 					alu_op <= "XX";
 					mem_read <= '0';
 					mem_write <= '0';
+					pc_src <= '0';
 			end case;
 --		end if;
 	end process;
